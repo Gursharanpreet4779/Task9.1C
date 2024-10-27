@@ -1,58 +1,59 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { auth } from './firebase'; 
-import { signInWithEmailAndPassword } from "firebase/auth"; 
-import './Login.css'; // Ensure the file is named login.css
+import React, { useRef, useState } from 'react';
+import { useAuth } from './Authentication';
+import { Link, useNavigate } from 'react-router-dom';
+import './Login.css';
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+export default function Login() {
+    const email = useRef();
+    const password = useRef();
+    const { login, logout } = useAuth();
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      await signInWithEmailAndPassword(auth, email, password); 
-      console.log('Logged in successfully');
-      navigate('/');  // Navigate to the home page after successful login
-    } catch (error) {
-      console.error('Error logging in', error);
-      alert(error.message); 
+    async function handleCheck(e) {
+        e.preventDefault();
+        try {
+            setError('');
+            setLoading(true);
+            await login(email.current.value, password.current.value);
+            navigate('/web');
+        } catch (error) {
+            setError(error.message);
+        }
+        setLoading(false);
     }
-  };
 
-  return (
-    <div className="login-container">
-      <form onSubmit={handleLogin} className="login-form">
-        <h2>Login</h2>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-        
-        <span className="sign-up-link" onClick={() => navigate('/Signup')}>
-          Don't have an account? Sign up
-        </span>
-      </form>
-    </div>
-  );
-};
+    async function handleLogout() {
+        try {
+            await logout();
+            navigate('/web'); 
+        } catch (error) {
+            setError("Failed to log out");
+        }
+    }
 
-export default Login;
+    return (
+        <div className="body1">
+            <div className="login">
+                <h1>Log In</h1>
+                {error && <div className="alert">{error}</div>}
+                <form onSubmit={handleCheck}>
+                    <label>Email:
+                        <input className="Akshit" type="email" ref={email} required />
+                    </label>
+                    <label>Password:
+                        <input className="Akshit" type="password" ref={password} required />
+                    </label>
+                    <button disabled={loading} className="button" type="submit">LOGIN</button>
+                </form>
+            </div>
+            <div className="account">
+                Create an Account? <Link to="/signup">Sign Up</Link>
+            </div>
+            <div className="logout">
+                <button onClick={handleLogout} className="button">LOGOUT</button>
+            </div>
+        </div>
+    );
+}
