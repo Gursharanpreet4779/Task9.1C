@@ -1,0 +1,63 @@
+* {
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+header {
+    background-color: rgb(42, 42, 43);
+    color: #fff;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    color: white;
+    font-weight: bold;
+}
+
+    .search-bar {
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}  
+
+.search-bar input {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+    width: 200px;
+} 
+
+.button-container {
+    display: flex;
+    gap: 8px;
+    width: 200px;
+}
+
+.button-container button {
+    padding: 6px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+} 
+
+ .search-btn {
+    padding: 2px 4px;
+    font-size: 12px;
+}
+
+.button-container .post-btn {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.button-container .login-btn {
+    background-color: #42aaff;
+    color: #fff;
+} 
