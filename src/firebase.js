@@ -1,21 +1,17 @@
-// firebase.js
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore'; 
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCA8XH2Pf0NO9kHypb8br-td26qtlvrESY",
-  authDomain: "task91c-cb31a.firebaseapp.com",
-  projectId: "task91c-cb31a",
-  storageBucket: "task91c-cb31a.appspot.com",
-  messagingSenderId: "406068552870",
-  appId: "1:406068552870:web:e9289cee817b0eece44067",
-  measurementId: "G-L21JXY8HXG"
+// Example function to create a new user
+const registerUser = async (email, password) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    // Successfully created new user
+    console.log('User registered:', userCredential.user);
+  } catch (error) {
+    if (error.code === 'auth/email-already-in-use') {
+      console.error('This email is already in use. Please try logging in or use a different email.');
+      // Optionally, redirect the user to the login page or prompt to reset the password
+    } else {
+      console.error('Error registering user:', error.message);
+    }
+  }
 };
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-export { auth, db };
