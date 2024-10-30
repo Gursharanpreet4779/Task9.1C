@@ -28,12 +28,15 @@ const SignUp = () => {
         name: name,
         email: email,
       });
-      alert("Passwords do not match!");
       console.log('User created successfully');
       navigate('/login');  // Navigate back to login page
     } catch (error) {
-      console.error('Error signing up', error);
-      alert(error.message); 
+      if (error.code === 'auth/email-already-in-use') {
+        alert('This email is already in use. Please log in or use a different email.');
+      } else {
+        console.error('Error signing up:', error);
+        alert(error.message);
+      }
     }
   };
 
@@ -81,8 +84,8 @@ const SignUp = () => {
             required
           />
         </div>
-        <button type="submit" >Sign Up</button>
-        <span className="login-link"onClick={() => navigate('/login')}>Back to Login</span>
+        <button type="submit">Sign Up</button>
+        <span className="login-link" onClick={() => navigate('/login')}>Back to Login</span>
       </form>
     </div>
   );
