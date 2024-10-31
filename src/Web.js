@@ -6,7 +6,7 @@ function Web() {
   return (
     <div>
       <header>
-        <h1 className='bar'>DEV@Deakin</h1>
+        <h1 className='bar'>Gursharanpreet@Deakin</h1>
         <div className="search-bar">
           <input type="text" placeholder="Search..." />
           <button type="button">Search</button>
