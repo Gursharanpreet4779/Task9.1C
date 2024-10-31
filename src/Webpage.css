@@ -1,63 +1,91 @@
-* {
-    font-size: 20px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e6f0f2; 
 }
+
 
 header {
-    background-color: rgb(42, 42, 43);
-    color: #fff;
-    padding: 10px 20px;
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-}
-
-.user-info {
+    padding: 10px 20px;
+    background-color: #333333; 
     color: white;
+    box-shadow: 0 4px 2px -2px gray;
+    z-index: 1000;
+}
+
+.bar {
+    font-size: 40px;
     font-weight: bold;
+    color: white;
+    margin: 0;
 }
 
-    .search-bar {
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-}  
-
-.search-bar input {
-    padding: 6px 10px;
-    border: none;
-    border-radius: 15px;
-    font-size: 14px;
-    width: 200px;
-} 
-
-.button-container {
+/* Search bar */
+.search-bar {
     display: flex;
-    gap: 8px;
-    width: 200px;
+    align-items: center;
+    gap: 10px;
 }
 
-.button-container button {
-    padding: 6px 12px;
-    font-size: 14px;
+.search-bar input[type="text"] {
+    width: 250px;
+    padding: 8px;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: #333333;
     cursor: pointer;
-} 
-
- .search-btn {
-    padding: 2px 4px;
-    font-size: 12px;
+    transition: background-color 0.3s ease;
 }
 
-.button-container .post-btn {
-    background-color: #4CAF50;
-    color: #fff;
+.search-bar button:hover {
+    background-color: #e0e0e0;
 }
 
-.button-container .login-btn {
-    background-color: #42aaff;
-    color: #fff;
-} 
+/* Login link*/
+.log {
+    background-color: #00a86b; 
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.log:hover {
+    background-color: #008752;
+}
+
+body {
+    padding-top: 60px; 
+}
+
+
+.main-content {
+    width: 90%; 
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
